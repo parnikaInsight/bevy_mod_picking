@@ -11,11 +11,12 @@ categories = ["game-engines", "rendering"]
 resolver = "2"
 
 [dependencies]
-bevy = { version = "0.8", default-features = false, features = ["render", "bevy_asset","bevy_scene",] }
-bevy_mod_raycast = { git = "https://github.com/paxsethorld/bevy_mod_raycast.git", branch = "main" }
+bevy = {git = "https://github.com/paxsethorld/bevy-fork.git", branch = "local-0-8-release", default-features = false, features = ["render", "bevy_asset","bevy_scene",]}
+#bevy = { version = "0.8", default-features = false, features = ["render", "bevy_asset","bevy_scene",] }
+bevy_mod_raycast = { git = "https://github.com/paxsethorld/bevy_mod_raycast.git", branch = "trial#2" }
 
-[dev-dependencies]
-bevy = { version = "0.8", default-features = false, features = [
-    "bevy_winit",
-    "x11",
-] }
+# [dev-dependencies]
+# bevy = { version = "0.8", default-features = false, features = [
+#     "bevy_winit",
+#     "x11",
+# ] }
