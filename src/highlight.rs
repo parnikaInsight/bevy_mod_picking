@@ -47,9 +47,21 @@ impl Highlightable for StandardMaterialHighlight {
         mut materials: Mut<Assets<Self::HighlightAsset>>,
     ) -> DefaultHighlighting<Self> {
         DefaultHighlighting {
-            hovered: materials.add(Color::rgb(0.35, 0.35, 0.35).into()),
-            pressed: materials.add(Color::rgb(0.35, 0.75, 0.35).into()),
+            hovered: materials.add(StandardMaterial {
+                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                alpha_mode: AlphaMode::Mask(0.5),
+                ..default()
+            }),
+            pressed: materials.add(StandardMaterial {
+                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                alpha_mode: AlphaMode::Mask(0.5),
+                ..default()
+            }),
             selected: materials.add(Color::rgb(0.35, 0.35, 0.75).into()),
+
+            // hovered: materials.add(Color::rgb(0.35, 0.35, 0.35).into()),
+            // pressed: materials.add(Color::rgb(0.35, 0.75, 0.35).into()),
+            // selected: materials.add(Color::rgb(0.35, 0.35, 0.75).into()),
         }
     }
 }
