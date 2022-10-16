@@ -73,18 +73,46 @@ impl Highlightable for StandardMaterialHighlight {
 #[derive(Default)]
 pub struct ColorMaterialHighlight;
 impl Highlightable for ColorMaterialHighlight {
-    type HighlightAsset = ColorMaterial;
+    type HighlightAsset = StandardMaterial;
 
     fn highlight_defaults(
         mut materials: Mut<Assets<Self::HighlightAsset>>,
     ) -> DefaultHighlighting<Self> {
         DefaultHighlighting {
-            hovered: materials.add(Color::rgb(0.35, 0.35, 0.35).into()),
-            pressed: materials.add(Color::rgb(0.35, 0.75, 0.35).into()),
-            selected: materials.add(Color::rgb(0.35, 0.35, 0.75).into()),
+            hovered: materials.add(StandardMaterial {
+                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                alpha_mode: AlphaMode::Mask(0.5),
+                ..default()
+            }),
+            pressed: materials.add(StandardMaterial {
+                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                alpha_mode: AlphaMode::Mask(0.5),
+                ..default()
+            }),
+            selected: materials.add(StandardMaterial {
+                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                alpha_mode: AlphaMode::Mask(0.5),
+                ..default()
+            }),
         }
     }
 }
+
+// #[derive(Default)]
+// pub struct ColorMaterialHighlight;
+// impl Highlightable for ColorMaterialHighlight {
+//     type HighlightAsset = ColorMaterial;
+
+//     fn highlight_defaults(
+//         mut materials: Mut<Assets<Self::HighlightAsset>>,
+//     ) -> DefaultHighlighting<Self> {
+//         DefaultHighlighting {
+//             hovered: materials.add(Color::rgb(0.35, 0.35, 0.35).into()),
+//             pressed: materials.add(Color::rgb(0.35, 0.75, 0.35).into()),
+//             selected: materials.add(Color::rgb(0.35, 0.35, 0.75).into()),
+//         }
+//     }
+// }
 
 impl<T: Highlightable> FromWorld for DefaultHighlighting<T> {
     fn from_world(world: &mut World) -> Self {
