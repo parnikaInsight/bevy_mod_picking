@@ -195,11 +195,11 @@ where
                             .after(PickingSystem::UpdateIntersections)
                             .before(PickingSystem::Highlighting),
                     )
-                    .with_system(
-                        mesh_highlighting::<T>
-                            .label(PickingSystem::Highlighting)
-                            .before(PickingSystem::Events),
-                    ),
+                    // .with_system(
+                    //     mesh_highlighting::<T>
+                    //         .label(PickingSystem::Highlighting)
+                    //         .before(PickingSystem::Events),
+                    // ),
             );
     }
 }

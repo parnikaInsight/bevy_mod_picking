@@ -164,29 +164,29 @@ pub fn mesh_highlighting<T: 'static + Highlightable + Send + Sync>(
     mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
     // Set non-hovered material when picking is paused (e.g. while hovering a picking blocker).
-    // if let Some(paused) = paused {
-    //     if paused.is_paused() {
-    //         for (_, mut material, selection, highlight) in interaction_query.iter_mut() {
-    //             *material = if selection.filter(|s| s.selected()).is_some() {
-    //                 if let Some(highlight_asset) = &highlight.selected {
-    //                     highlight_asset
-    //                 } else {
-    //                     &global_default_highlight.selected
-    //                 }
-    //             } else {
-    //                 &highlight.initial
-    //             }
-    //             .to_owned();
+    if let Some(paused) = paused {
+        if paused.is_paused() {
+            for (_, mut material, selection, highlight) in interaction_query.iter_mut() {
+                *material = if selection.filter(|s| s.selected()).is_some() {
+                    if let Some(highlight_asset) = &highlight.selected {
+                        highlight_asset
+                    } else {
+                        &global_default_highlight.selected
+                    }
+                } else {
+                    &highlight.initial
+                }
+                .to_owned();
 
-    //             // materials.add(StandardMaterial {
-    //             //     base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
-    //             //     alpha_mode: AlphaMode::Mask(0.5),
-    //             //     ..default()
-    //             // })
-    //         }
-    //         return;
-    //     }
-    // }
+                // materials.add(StandardMaterial {
+                //     base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                //     alpha_mode: AlphaMode::Mask(0.5),
+                //     ..default()
+                // })
+            }
+            return;
+        }
+    }
     for (interaction, mut material, selection, highlight) in interaction_query.iter_mut() {
         *material = match *interaction {
             Interaction::Clicked => {
