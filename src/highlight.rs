@@ -57,7 +57,11 @@ impl Highlightable for StandardMaterialHighlight {
                 alpha_mode: AlphaMode::Mask(0.5),
                 ..default()
             }),
-            selected: materials.add(Color::rgb(0.35, 0.35, 0.75).into()),
+            selected: materials.add(StandardMaterial {
+                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                alpha_mode: AlphaMode::Mask(0.5),
+                ..default()
+            }),
 
             // hovered: materials.add(Color::rgb(0.35, 0.35, 0.35).into()),
             // pressed: materials.add(Color::rgb(0.35, 0.75, 0.35).into()),
