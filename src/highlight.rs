@@ -48,17 +48,17 @@ impl Highlightable for StandardMaterialHighlight {
     ) -> DefaultHighlighting<Self> {
         DefaultHighlighting {
             hovered: materials.add(StandardMaterial {
-                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                base_color: Color::rgba(1.0, 0.0, 0.0, 0.0),
                 alpha_mode: AlphaMode::Mask(0.5),
                 ..default()
             }),
             pressed: materials.add(StandardMaterial {
-                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                base_color: Color::rgba(0.0, 1.0, 0.0, 0.0),
                 alpha_mode: AlphaMode::Mask(0.5),
                 ..default()
             }),
             selected: materials.add(StandardMaterial {
-                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                base_color: Color::rgba(0.0, 0.0, 1.0, 0.0),
                 alpha_mode: AlphaMode::Mask(0.5),
                 ..default()
             }),
