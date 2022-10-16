@@ -91,8 +91,8 @@ pub struct DefaultPickingPlugins;
 
 impl PluginGroup for DefaultPickingPlugins {
     fn build(&mut self, group: &mut PluginGroupBuilder) {
-        group.add(PickingPlugin);
-        //group.add(InteractablePickingPlugin);
+        //group.add(PickingPlugin);
+        group.add(InteractablePickingPlugin);
         HighlightablePickingPlugins.build(group);
     }
 }
