@@ -54,7 +54,7 @@ impl Default for PickingPluginsState {
     fn default() -> Self {
         Self {
             enable_picking: true,
-            enable_highlighting: false,
+            enable_highlighting: true,
             enable_interacting: true,
         }
     }
