@@ -123,6 +123,7 @@ impl<T: Highlightable> FromWorld for DefaultHighlighting<T> {
 #[allow(clippy::type_complexity)]
 pub fn get_initial_mesh_highlight_asset<T: Asset>(
     mut commands: Commands,
+    mut materials: ResMut<Assets<StandardMaterial>>,
     entity_asset_query: Query<(Entity, &Handle<T>), Added<Highlight>>,
     mut highlighting_query: Query<Option<&mut Highlighting<T>>>,
 ) {
@@ -131,7 +132,12 @@ pub fn get_initial_mesh_highlight_asset<T: Asset>(
             Ok(Some(mut highlighting)) => highlighting.initial = material.to_owned(),
             _ => {
                 let init_component = Highlighting {
-                    initial: material.to_owned(),
+                    //initial: material.to_owned(),
+                    initial: materials.add(StandardMaterial {
+                        base_color: Color::rgba(1.0, 0.0, 0.0, 0.0),
+                        alpha_mode: AlphaMode::Mask(0.5),
+                        ..default()
+                    }),
                     hovered: None,
                     pressed: None,
                     selected: None,
