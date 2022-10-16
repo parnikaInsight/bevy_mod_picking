@@ -169,7 +169,7 @@ pub struct HighlightablePickingPlugins;
 impl PluginGroup for HighlightablePickingPlugins {
     fn build(&mut self, group: &mut PluginGroupBuilder) {
         group.add(CustomHighlightPlugin(StandardMaterialHighlight));
-        group.add(CustomHighlightPlugin(ColorMaterialHighlight));
+        //group.add(CustomHighlightPlugin(ColorMaterialHighlight));
     }
 }
 
