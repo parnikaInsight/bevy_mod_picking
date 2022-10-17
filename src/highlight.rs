@@ -163,11 +163,16 @@ pub fn mesh_highlighting<T: 'static + Highlightable + Send + Sync>(
                 }
             }
             Interaction::None => {
-                materials.add(StandardMaterial {
-                    base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
-                    alpha_mode: AlphaMode::Mask(0.5),
-                    ..default()
-                })
+                if let Some(highlight_asset) = &highlight.hovered {
+                    highlight_asset
+                } else {
+                    &global_default_highlight.hovered
+                }
+                // let m = StandardMaterial {
+                //     base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                //     alpha_mode: AlphaMode::Mask(0.5),
+                //     ..default()
+                // };
                 // if selection.filter(|s| s.selected()).is_some() {
                 //     if let Some(highlight_asset) = &highlight.selected {
                 //         highlight_asset
