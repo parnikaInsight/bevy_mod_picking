@@ -57,7 +57,11 @@ impl Highlightable for StandardMaterialHighlight {
                 alpha_mode: AlphaMode::Mask(0.5),
                 ..default()
             }),
-            selected: materials.add(Color::rgb(0.35, 0.35, 0.75).into()),
+            selected: materials.add(StandardMaterial {
+                base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                alpha_mode: AlphaMode::Mask(0.5),
+                ..default()
+            }),
 
             // hovered: materials.add(Color::rgb(0.35, 0.35, 0.35).into()),
             // pressed: materials.add(Color::rgb(0.35, 0.75, 0.35).into()),
@@ -159,15 +163,20 @@ pub fn mesh_highlighting<T: 'static + Highlightable + Send + Sync>(
                 }
             }
             Interaction::None => {
-                if selection.filter(|s| s.selected()).is_some() {
-                    if let Some(highlight_asset) = &highlight.selected {
-                        highlight_asset
-                    } else {
-                        &global_default_highlight.selected
-                    }
-                } else {
-                    &highlight.initial
-                }
+                materials.add(StandardMaterial {
+                    base_color: Color::rgba(0.2, 0.7, 0.1, 0.0),
+                    alpha_mode: AlphaMode::Mask(0.5),
+                    ..default()
+                })
+                // if selection.filter(|s| s.selected()).is_some() {
+                //     if let Some(highlight_asset) = &highlight.selected {
+                //         highlight_asset
+                //     } else {
+                //         &global_default_highlight.selected
+                //     }
+                // } else {
+                //     &highlight.initial
+                // }
             }
         }
         .to_owned();
